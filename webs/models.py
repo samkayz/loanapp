@@ -78,3 +78,20 @@ class UserSession(models.Model):
     def __str__(self):
         """Return a human readable representation of the model instance."""
         return "{}".format(self.user)
+
+
+class EmailConfig(models.Model):
+    name = models.CharField(default='email', max_length=10)
+    port = models.BigIntegerField(null=True, blank=True)
+    is_tls = models.BooleanField(null=True, blank=True)
+    username = models.CharField(max_length=100, null=True, blank=True)
+    password = models.CharField(max_length=100, null=True, blank=True)
+    host = models.CharField(max_length=100, null=True, blank=True)
+    default_email = models.EmailField(null=True, blank=True)
+
+    class Meta:
+        db_table = 'email_config'
+    
+    def __str__(self):
+        """Return a human readable representation of the model instance."""
+        return "{}".format(self.name)

@@ -22,6 +22,7 @@ urlpatterns = [
     path('agent/', include('agent.urls')),
     path('manager/', include('manager.urls')),
     path('customer/', include('customer.urls')),
-    path('', views.login, name='login')
+    path('', views.login, name='login'),
+    path('signup/', views.signup, name='signup'),
     
 ]

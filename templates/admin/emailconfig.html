@@ -1,0 +1,164 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+    <head>
+        
+        <meta charset="utf-8" />
+        <title>Add Product | Skote - Admin & Dashboard Template</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+        <meta content="Themesbrand" name="author" />
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico'%}">
+
+        <!-- select2 css -->
+        <link href="{% static 'assets/libs/select2/css/select2.min.css'%}" rel="stylesheet" type="text/css" />
+
+        <!-- dropzone css -->
+        <link href="{% static 'assets/libs/dropzone/min/dropzone.min.css'%}" rel="stylesheet" type="text/css" />
+
+        <!-- Bootstrap Css -->
+        <link href="{% static 'assets/css/bootstrap.min.css'%}" id="bootstrap-style" rel="stylesheet" type="text/css" />
+        <!-- Icons Css -->
+        <link href="{% static 'assets/css/icons.min.css'%}" rel="stylesheet" type="text/css" />
+        <!-- App Css-->
+        <link href="{% static 'assets/css/app.min.css'%}" id="app-style" rel="stylesheet" type="text/css" />
+
+    </head>
+
+    <body data-sidebar="dark">
+
+    <!-- <body data-layout="horizontal" data-topbar="dark"> -->
+
+        <!-- Begin page -->
+        <div id="layout-wrapper">
+
+            
+            <!-- Include Header -->
+            {% include 'admin/header.html' %}
+
+            <!-- ========== Left Sidebar Start ========== -->
+            {% include 'admin/sidebar.html' %}
+            <!-- Left Sidebar End -->
+
+            
+
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="main-content">
+                <!-- Toast Message -->
+                {% include 'toast/message.html' %}
+                <div class="page-content">
+                    <div class="container-fluid">
+
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                    <h4 class="mb-sm-0 font-size-18">Email Configuration</h4>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end page title -->
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <form action="{% url 'emailConfig' %}" method="POST">
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <div class="mb-3">
+                                                        <label for="productname">HOST</label>
+                                                        <input id="productname" name="host" {% if data.host == None %} placeholder="Email Host" {% else %} value="{{data.host}}" {% endif %} type="text" class="form-control">
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="manufacturername">EMAIL USERNAME</label>
+                                                        <input id="manufacturername" name="username" {% if data.username == None %} placeholder="Email Username" {% else %} value="{{data.username}}" {% endif %} type="text" class="form-control">
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="manufacturerbrand">EMAIL PASSWORD</label>
+                                                        <input id="manufacturerbrand" name="password" {% if data.password == None %} placeholder="Email Password" {% else %} value="{{data.password}}" {% endif %} type="text" class="form-control">
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="price">DEFAULT EMAIL</label>
+                                                        <input id="price" name="default_email" {% if data.default_email == None %} placeholder="Default Email" {% else %} value="{{data.default_email}}" {% endif %} type="text" class="form-control">
+                                                    </div>
+                                                </div>
+        
+                                                <div class="col-sm-6">
+                                                    <div class="mb-3">
+                                                        <label class="control-label">SSL</label>
+                                                        <select class="form-control select2" name="protocol">
+                                                            <option {% if data.is_tls == False %} selected {% endif %} value="False">SSL</option>
+                                                            <option {% if data.is_tls == True %} selected {% endif %} value="True">TLS</option>
+                                                        </select>
+                                                    </div>
+                                                    
+                                                    <div class="mb-3">
+                                                        <label for="price">EMAIL PORT</label>
+                                                        <input id="price" name="port" {% if data.port == None %} placeholder="Email Port" {% else %} value="{{data.port}}" {% endif %} type="text" class="form-control">
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+        
+                                            <div class="d-flex flex-wrap gap-2">
+                                                <button type="submit" class="btn btn-primary waves-effect waves-light">Save Changes</button>
+                                            </div>
+                                        </form>
+        
+                                    </div>
+                                </div>
+
+                                <!-- end card-->
+                            </div>
+                        </div>
+                        <!-- end row -->
+
+                    </div> <!-- container-fluid -->
+                </div>
+                <!-- End Page-content -->
+
+                
+                <!-- Footer -->
+                {% include 'admin/footer.html' %}
+                <!-- End Footer -->
+            </div>
+            <!-- end main content-->
+
+        </div>
+        <!-- END layout-wrapper -->
+
+        <!-- Right Sidebar -->
+        
+        <!-- /Right-bar -->
+
+        <!-- Right bar overlay-->
+        <div class="rightbar-overlay"></div>
+
+        <!-- JAVASCRIPT -->
+        <script src="{% static 'assets/libs/jquery/jquery.min.js'%}"></script>
+        <script src="{% static 'assets/libs/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+        <script src="{% static 'assets/libs/metismenu/metisMenu.min.js'%}"></script>
+        <script src="{% static 'assets/libs/simplebar/simplebar.min.js'%}"></script>
+        <script src="{% static 'assets/libs/node-waves/waves.min.js'%}"></script>
+
+        <!-- select 2 plugin -->
+        <script src="{% static 'assets/libs/select2/js/select2.min.js'%}"></script>
+
+        <!-- dropzone plugin -->
+        <script src="{% static 'assets/libs/dropzone/min/dropzone.min.js'%}"></script>
+
+        <!-- init js -->
+        <script src="{% static 'assets/js/pages/ecommerce-select2.init.js'%}"></script>
+
+        <!-- App js -->
+        <script src="{% static 'assets/js/app.js'%}"></script>
+
+    </body>
+</html>
