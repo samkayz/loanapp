@@ -31,7 +31,8 @@
 		
 	</head>
 	<body class="authentication">
-
+		<!-- Toast Message -->
+		{% include 'toast/message.html' %}
 		<!-- Loading wrapper start -->
 		<div id="loading-wrapper">
 			<div class="spinner-border"></div>
@@ -64,31 +65,32 @@
 				</div>
 				<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
 					<div class="login-wrapper">
-						<form action="http://bootstrap.gallery/unipro/v1-x/01-design-blue/reports.html">
+						<form action="{% url 'signup' %}" method="POST">
+							{% csrf_token %}
 							<div class="login-screen">
 								<div class="login-body">
-									<a href="reports.html" class="login-logo">
+									<a href="{% url 'index' %}" class="login-logo">
 										<img src="{% static 'img/logo.svg'%}" alt="Uni Pro Admin">
 									</a>
 									<h6>Welcome to UniPro dashboard,<br>Create your account.</h6>
 									<div class="field-wrapper">
-										<input type="text" autofocus>
+										<input type="text" name="fullname" autofocus>
 										<div class="field-placeholder">Fullname</div>
 									</div>
 									<div class="field-wrapper">
-										<input type="text" autofocus maxlength="11">
+										<input type="text" name="mobile" autofocus maxlength="11">
 										<div class="field-placeholder">Mobile Number</div>
 									</div>
 									<div class="field-wrapper">
-										<input type="email" autofocus>
+										<input type="email" name="email" autofocus>
 										<div class="field-placeholder">Email ID</div>
 									</div>
 									<div class="field-wrapper">
-										<input type="password">
+										<input type="password" name="password1">
 										<div class="field-placeholder">Password</div>
 									</div>
 									<div class="field-wrapper mb-3">
-										<input type="password">
+										<input type="password" name="password2">
 										<div class="field-placeholder">Confirm Password</div>
 									</div>
 									<div class="actions">
@@ -96,7 +98,7 @@
 									</div>
 								</div>
 								<div class="login-footer">
-									<span class="additional-link">Have an account? <a href="{% url 'login' %}" class="btn btn-light">Login</a></span>
+									<span class="additional-link">Have an account? <a href="{% url 'signin' %}" class="btn btn-light">Login</a></span>
 								</div>
 							</div>
 						</form>

@@ -4,7 +4,13 @@ from django.contrib.auth.models import AbstractBaseUser, UserManager, BaseUserMa
 from django.http import request
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
+from django.core.files.storage import FileSystemStorage
 from django.contrib.sessions.models import Session
+import os
+
+
+identification = FileSystemStorage(location=os.path.join('media/identification'))
+profile = FileSystemStorage(location=os.path.join('media/profile'))
 
 
 class UserManager(BaseUserManager):
@@ -65,6 +71,29 @@ class User(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         """Return a human readable representation of the model instance."""
         return "{}".format(self.email)
+
+
+
+class AccountInfo(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user_no = models.TextField(null=True, blank=True)
+    status = models.BooleanField(default=False)
+    address = models.TextField(null=True, blank=True)
+    state = models.CharField(max_length=100, blank=True, null=True)
+    country = models.CharField(max_length=100, null=True, blank=True)
+    zip_code = models.CharField(max_length=100, null=True, blank=True)
+    means_of_id = models.CharField(max_length=100, null=True, blank=True)
+    mid_image = models.FileField(upload_to=identification, null=True, blank=True)
+    profile_image = models.FileField(upload_to=profile, null=True, blank=True)
+
+    class Meta:
+        db_table = 'account_info'
+    
+
+    def __str__(self):
+        """Return a human readable representation of the model instance."""
+        return "{}".format(self.user)
+
 
 
 class UserSession(models.Model):

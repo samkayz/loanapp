@@ -30,10 +30,6 @@ def signin(request):
 
 @permission_required('is_superuser', login_url='/webs/')
 def home(request):
-    html_content = render_to_string('email/mail.html', {'Otp':'12345'})
-    email.sendEmailWithFile(html_content, emailSubject='Hello World', receiverEmail='ilemobayosamson@gmail.com', pathToFile='./cv.pdf', docName='mycv')
-    # sendEmailWithFile(html_content)
-    # sendEmail(html_content, receiverEmail='ilemobayosamson@gmail.com', emailSubject='Hello')
     return render(request, 'admin/home.html')
 
 

@@ -10,6 +10,7 @@ import pathlib
 
 
 class EmailBackEnd:
+    
     def sendEmail(self, template, receiverEmail, emailSubject):
         try:
             data = get_object_or_404(EmailConfig, name='email')
